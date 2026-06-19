@@ -69,7 +69,7 @@ export default function MobileNav() {
 
         px-4
 
-        z-50
+        z-[9997]
         "
       >
         <h2
@@ -100,13 +100,13 @@ export default function MobileNav() {
 
       {open && (
         <>
-          <div
-            className="
-            fixed
-            inset-0
-            bg-black/60
-            z-40
-            "
+         <div
+  className="
+  fixed
+  inset-0
+  bg-black/60
+  z-[9998]
+  "
             onClick={() =>
               setOpen(false)
             }
@@ -115,24 +115,27 @@ export default function MobileNav() {
           {/* Sidebar */}
 
           <div
-            className="
-            fixed
-            top-0
-            left-0
+  className="
+  fixed
+  top-0
+  left-0
 
-            w-72
-            h-screen
+  w-72
+  h-screen
 
-            bg-[#161B2B]
+  bg-[#161B2B]
 
-            border-r
-            border-[#3C494E]
+  border-r
+  border-[#3C494E]
 
-            z-50
+  z-[9999]
 
-            p-6
-            "
-          >
+  p-6
+
+  flex
+  flex-col
+  "
+>
             {/* Header */}
 
             <div
@@ -204,12 +207,7 @@ export default function MobileNav() {
             )}
 
             {/* Navigation */}
-
-            <nav
-              className="
-              space-y-2
-              "
-            >
+            <nav className="space-y-2 flex-1">
               {links.map(
                 (link) => {
                   const isActive =
@@ -256,13 +254,10 @@ export default function MobileNav() {
             {/* Bottom Auth Section */}
 
             <div
-              className="
-              absolute
-              bottom-6
-              left-6
-              right-6
-              "
-            >
+  className="
+  mt-10
+  "
+>
               {!token ? (
                 <div className="space-y-3">
 

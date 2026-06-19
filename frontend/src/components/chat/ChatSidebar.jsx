@@ -94,29 +94,32 @@ export default function ChatSidebar() {
 
   return (
     <div
-      style={{
-        width: "260px",
-        minWidth: "260px",
-
-        flexShrink: 0,
-
-        alignSelf:
-          "stretch",
-
-        background:
-          "#0f1629",
-
-        borderRight:
-          "1px solid #1e2a45",
-
-        display: "flex",
-
-        flexDirection:
-          "column",
-
-        overflow:
-          "hidden",
-      }}
+    style={{
+      width:
+        window.innerWidth < 768
+          ? "100vw"
+          : "260px",
+    
+      minWidth:
+        window.innerWidth < 768
+          ? "100vw"
+          : "260px",
+    
+      height: "100vh",
+    
+      flexShrink: 0,
+    
+      background: "#0f1629",
+    
+      borderRight:
+        "1px solid #1e2a45",
+    
+      display: "flex",
+    
+      flexDirection: "column",
+    
+      overflow: "hidden",
+    }}
     >
       {/* Header */}
 
