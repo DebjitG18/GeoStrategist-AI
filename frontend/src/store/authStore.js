@@ -1,7 +1,12 @@
 import { create } from "zustand";
 
 const useAuthStore = create((set) => ({
-  user: null,
+  user:
+    typeof window !== "undefined"
+      ? JSON.parse(
+          localStorage.getItem("user")
+        )
+      : null,
 
   token:
     typeof window !== "undefined"
@@ -9,7 +14,15 @@ const useAuthStore = create((set) => ({
       : null,
 
   setAuth: (user, token) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem(
+      "token",
+      token
+    );
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify(user)
+    );
 
     set({
       user,
@@ -18,7 +31,13 @@ const useAuthStore = create((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem(
+      "token"
+    );
+
+    localStorage.removeItem(
+      "user"
+    );
 
     set({
       user: null,
@@ -27,6 +46,11 @@ const useAuthStore = create((set) => ({
   },
 
   setUser: (user) => {
+    localStorage.setItem(
+      "user",
+      JSON.stringify(user)
+    );
+
     set({ user });
   },
 }));

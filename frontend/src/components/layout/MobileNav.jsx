@@ -171,7 +171,7 @@ export default function MobileNav() {
 
             {/* User Section */}
 
-            {token && (
+            {token && user && (
               <div
                 className="
                 mb-6
