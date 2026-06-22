@@ -337,7 +337,7 @@ const CONFLICT_COORDINATES = {
   "israel-lebanon-conflict": { lat: 33.8, lng: 35.8 },
   "us-iran-tensions": { lat: 32, lng: 53 },
   "taiwan-strait-tensions": { lat: 24, lng: 121 },
-  "india-pakistan-tensions": { lat: 34, lng: 69 },
+  "india-pakistan-tensions": { lat: 29.6, lng: 73.2 },
   "sudan-conflict": { lat: 15.5, lng: 32.5 },
   "south-china-sea-dispute": { lat: 15, lng: 115 },
   "dr-congo-conflict": { lat: -2, lng: 23 },
@@ -449,8 +449,8 @@ function resolveConflictCoordinates(conflict) {
     text.includes("jammu and kashmir")
   ) {
     return {
-      lat: 34,
-      lng: 69,
+      lat: 29.6,
+      lng: 73.2,
       locationSource: "heuristic:india-pakistan",
     };
   }
@@ -503,11 +503,12 @@ function resolveConflictCoordinates(conflict) {
     };
   }
 
-  if (text.includes("north korea") && text.includes("south korea")) {
+  
+  if (text.includes("germany") && text.includes("belarus")) {
     return {
-      lat: 38,
-      lng: 127,
-      locationSource: "heuristic:koreas",
+      lat: 54.5,
+      lng: 25.7,
+      locationSource: "heuristic:germany-belarus",
     };
   }
 
