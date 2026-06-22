@@ -41,15 +41,29 @@ async function updateConflicts() {
       await discoverConflicts(
         news
       );
+      console.log(
+        "AI returned:",
+        conflicts
+      );
 
     console.log(
       `Found ${conflicts.length} conflicts`
     );
 
-    for (
-      const conflict of conflicts
-    ) {
+    for (const conflict of conflicts) {
 
+      if (
+        !conflict.name ||
+        typeof conflict.name !== "string" ||
+        conflict.name.trim() === ""
+      ) {
+        console.log(
+          "Skipping invalid conflict:",
+          conflict
+        );
+        continue;
+      }
+    
       conflict.name =
         conflict.name
           .trim()

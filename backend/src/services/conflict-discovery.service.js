@@ -135,6 +135,17 @@ Return ONLY valid JSON.
 
     const conflicts =
       JSON.parse(content);
+      console.log(
+        "AI CONFLICTS:"
+      );
+      
+      console.log(
+        JSON.stringify(
+          conflicts,
+          null,
+          2
+        )
+      );
 
       const conflictCoordinates = {
 
@@ -167,23 +178,30 @@ Return ONLY valid JSON.
         "North Korea-South Korea Tensions": [38, 127]
       };
 
-      return conflicts.map(
-        (conflict) => ({
-      
-          ...conflict,
-      
-          lat:
-            conflictCoordinates[
-              conflict.name
-            ]?.[0],
-      
-          lng:
-            conflictCoordinates[
-              conflict.name
-            ]?.[1],
-      
-        })
-      );
+      return conflicts
+      .filter(
+        (conflict) =>
+          conflict &&
+          typeof conflict.name ===
+            "string" &&
+          conflict.name.trim() !== ""
+      )
+      .map((conflict) => ({
+        ...conflict,
+    
+        name:
+          conflict.name.trim(),
+    
+        lat:
+          conflictCoordinates[
+            conflict.name.trim()
+          ]?.[0],
+    
+        lng:
+          conflictCoordinates[
+            conflict.name.trim()
+          ]?.[1],
+      }));
 
   } catch (err) {
 
