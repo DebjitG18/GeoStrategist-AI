@@ -8,7 +8,7 @@ const {
 } = require("../utils/aiJson");
 
 const MODEL =
-  "openai/gpt-oss-120b:free";
+  "openai/gpt-oss-20b:free";
 
 function clampNumber(
   value,
