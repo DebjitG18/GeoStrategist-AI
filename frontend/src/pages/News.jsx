@@ -106,7 +106,7 @@ export default function News() {
         region === "all"
           ? true
           : article.region ===
-            region;
+          region;
 
       return (
         matchesSearch &&
@@ -259,8 +259,8 @@ export default function News() {
         {filteredNews.map(
           (article) => (
             <div
-            key={article._id}
-            className="
+              key={article._id}
+              className="
               bg-[#0F172A]/70
               border
               border-violet-500/20
@@ -270,35 +270,35 @@ export default function News() {
               transition-all
               overflow-hidden
             "
-          >
-            <h2
-              className="
+            >
+              <h2
+                className="
                 text-base
                 font-semibold
                 text-white
                 leading-snug
                 line-clamp-2
               "
-            >
-              {cleanText(article.title)}
-            </h2>
-          
-            {article.description && (
-              <p
-                className="
+              >
+                {cleanText(article.title)}
+              </h2>
+
+              {article.description && (
+                <p
+                  className="
                   text-slate-400
                   text-sm
                   mt-2
                   leading-6
                   line-clamp-3
                 "
-              >
-                {cleanText(article.description)}
-              </p>
-            )}
-          
-            <div
-              className="
+                >
+                  {cleanText(article.description)}
+                </p>
+              )}
+
+              <div
+                className="
                 flex
                 flex-wrap
                 gap-2
@@ -306,58 +306,57 @@ export default function News() {
                 text-xs
                 items-center
               "
-            >
-              <div className="flex gap-2 flex-wrap">
-                <span
-                  className={`
+              >
+                <div className="flex gap-2 flex-wrap">
+                  <span
+                    className={`
                     px-2
                     py-1
                     rounded-full
-                    ${
-                      getRiskLevel(article.region).className
-                    }
+                    ${getRiskLevel(article.region).className
+                      }
                   `}
-                >
-                  {getRiskLevel(article.region).label}
-                </span>
-          
-                <span
-                  className="
+                  >
+                    {getRiskLevel(article.region).label}
+                  </span>
+
+                  <span
+                    className="
                     px-2
                     py-1
                     rounded-full
                     bg-cyan-500/10
                     text-cyan-400
                   "
-                >
-                  {article.region}
-                </span>
-              </div>
-          
-              {article.source && (
-                <span
-                  className="
+                  >
+                    {article.region}
+                  </span>
+                </div>
+
+                {article.source && (
+                  <span
+                    className="
                     px-2
                     py-1
                     rounded-full
                     bg-yellow-500/10
                     text-yellow-400
                   "
-                >
-                  {article.source}
+                  >
+                    {article.source}
+                  </span>
+                )}
+
+                <span className="text-slate-500">
+                  {new Date(article.publishedAt).toLocaleDateString()}
                 </span>
-              )}
-          
-              <span className="text-slate-500">
-                {new Date(article.publishedAt).toLocaleDateString()}
-              </span>
-            </div>
-          
-            <a
-              href={article.url}
-              target="_blank"
-              rel="noreferrer"
-              className="
+              </div>
+
+              <a
+                href={article.url}
+                target="_blank"
+                rel="noreferrer"
+                className="
                 inline-block
                 mt-3
                 text-sm
@@ -365,10 +364,10 @@ export default function News() {
                 hover:text-cyan-400
                 transition-colors
               "
-            >
-              Read Article →
-            </a>
-          </div>
+              >
+                Read Article →
+              </a>
+            </div>
           )
         )}
       </div>
