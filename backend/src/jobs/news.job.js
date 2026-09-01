@@ -18,8 +18,10 @@ async function syncNews() {
     console.log("Checking for latest news...");
 
     const world = await fetchWorldNews().catch(() => []);
+    console.log("World News:", world.length);
     const feed = await fetchHeadlineFeed().catch(() => []);
-
+    console.log("Headline Feed:", feed.length);
+    
     const articles = [...world, ...feed];
     console.log(`Fetched ${articles.length} articles`);
 

@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const REQUEST_TIMEOUT_MS = 20000;
 const NEWS_QUERY =
-  "war conflict attack missile military protest sanctions invasion ceasefire airstrike bombing drone";
+  "(war OR conflict OR attack OR missile OR military OR protest OR sanctions OR invasion OR ceasefire OR airstrike OR bombing OR drone)";
 
 function logAxiosError(prefix, err) {
   console.log(`${prefix} ERROR STATUS:`, err.response?.status);
@@ -82,20 +82,30 @@ function normalizeArticles(data) {
 
 exports.fetchWorldNews = async function () {
   try {
+    console.log("WORLDNEWS API KEY EXISTS:", !!process.env.WORLDNEWS_API_KEY);
+
     const response = await axios.get(
       "https://api.worldnewsapi.com/search-news",
       {
         params: {
           "api-key": process.env.WORLDNEWS_API_KEY,
-          text: NEWS_QUERY,
+          text: "(war OR conflict OR attack OR missile OR military OR protest OR sanctions OR invasion OR ceasefire OR airstrike OR bombing OR drone)",
           language: "en",
           number: 50,
+          sort: "publish-time",
+          "sort-direction": "DESC",
         },
         timeout: REQUEST_TIMEOUT_MS,
       }
     );
 
+    console.log("WORLDNEWS STATUS:", response.status);
+    console.log("WORLDNEWS ARTICLES:", response.data?.news?.length);
+    console.log("WORLDNEWS AVAILABLE:", response.data?.available);
+    console.log("QUOTA LEFT:", response.headers["x-api-quota-left"]);
+
     return normalizeArticles(response.data);
+
   } catch (err) {
     logAxiosError("WORLDNEWS", err);
     return [];
