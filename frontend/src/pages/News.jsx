@@ -125,7 +125,7 @@ export default function News() {
   }
 
   return (
-    <div className="p-4 md:p-8 overflow-x-hidden">
+    <div className="p-4 md:p-6 overflow-x-hidden max-w-5xl">
       <h1
         className="
         text-3xl
@@ -259,130 +259,116 @@ export default function News() {
         {filteredNews.map(
           (article) => (
             <div
-              key={article._id}
-              className="
+            key={article._id}
+            className="
               bg-[#0F172A]/70
-              backdrop-blur-xl
               border
               border-violet-500/20
-              rounded-3xl
-              p-6
+              rounded-xl
+              p-4
               hover:border-cyan-400/40
               transition-all
               overflow-hidden
-              max-w-full
+            "
+          >
+            <h2
+              className="
+                text-base
+                font-semibold
+                text-white
+                leading-snug
+                line-clamp-2
               "
             >
-              <h2
+              {cleanText(article.title)}
+            </h2>
+          
+            {article.description && (
+              <p
                 className="
-                text-xl
-                font-bold
-                text-white
-                break-words
-                leading-relaxed
-                overflow-hidden
+                  text-slate-400
+                  text-sm
+                  mt-2
+                  leading-6
+                  line-clamp-3
                 "
               >
-                {cleanText(
-                  article.title
-                )}
-              </h2>
-
-              {article.description && (
-                <p
-                  className="
-                  text-slate-400
-                  mt-3
-                  break-words
-                  leading-relaxed
-                  overflow-hidden
-                  "
-                >
-                  {cleanText(
-                    article.description
-                  )}
-                </p>
-              )}
-
-              <div
-                className="
+                {cleanText(article.description)}
+              </p>
+            )}
+          
+            <div
+              className="
                 flex
                 flex-wrap
-                gap-4
-                mt-4
-                text-sm
-                "
-              >
-                <div className="flex gap-2 flex-wrap">
-                  <span
-                    className={`
-                      px-3
-                      py-1
-                      rounded-full
-                      ${
-                        getRiskLevel(
-                          article.region
-                        ).className
-                      }
-                    `}
-                  >
-                    {
-                      getRiskLevel(
-                        article.region
-                      ).label
+                gap-2
+                mt-3
+                text-xs
+                items-center
+              "
+            >
+              <div className="flex gap-2 flex-wrap">
+                <span
+                  className={`
+                    px-2
+                    py-1
+                    rounded-full
+                    ${
+                      getRiskLevel(article.region).className
                     }
-                  </span>
-
-                  <span
-                    className="
-                    px-3
+                  `}
+                >
+                  {getRiskLevel(article.region).label}
+                </span>
+          
+                <span
+                  className="
+                    px-2
                     py-1
                     rounded-full
                     bg-cyan-500/10
                     text-cyan-400
-                    "
-                  >
-                    {article.region}
-                  </span>
-                </div>
-
-                {article.source && (
-                  <span
-                    className="
-                    px-3
+                  "
+                >
+                  {article.region}
+                </span>
+              </div>
+          
+              {article.source && (
+                <span
+                  className="
+                    px-2
                     py-1
                     rounded-full
                     bg-yellow-500/10
                     text-yellow-400
-                    "
-                  >
-                    {article.source}
-                  </span>
-                )}
-
-                <span className="text-slate-500 break-all">
-                  {new Date(
-                    article.publishedAt
-                  ).toLocaleString()}
+                  "
+                >
+                  {article.source}
                 </span>
-              </div>
-
-              <a
-                href={article.url}
-                target="_blank"
-                rel="noreferrer"
-                className="
+              )}
+          
+              <span className="text-slate-500">
+                {new Date(article.publishedAt).toLocaleDateString()}
+              </span>
+            </div>
+          
+            <a
+              href={article.url}
+              target="_blank"
+              rel="noreferrer"
+              className="
                 inline-block
-                mt-4
+                mt-3
+                text-sm
                 text-violet-400
                 hover:text-cyan-400
                 transition-colors
-                break-all
-                "
-              >
-                Read Article →
-              </a>
-            </div>
+              "
+            >
+              Read Article →
+            </a>
+          </div>
           )
         )}
       </div>

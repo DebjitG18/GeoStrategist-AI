@@ -8,7 +8,7 @@ const {
 } = require("../utils/aiJson");
 
 const MODEL =
-  "z-ai/glm-5.2:free";
+  "nvidia/nemotron-3-ultra-550b-a55b:free";
 
 function clampNumber(
   value,
