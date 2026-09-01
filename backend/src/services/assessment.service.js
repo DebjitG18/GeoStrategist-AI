@@ -8,7 +8,7 @@ const {
 } = require("../utils/aiJson");
 
 const MODEL =
-  "openai/gpt-oss-20b:free";
+  "z-ai/glm-5.2:free";
 
 function clampNumber(value, min, max, fallback) {
   const parsed = Number(value);

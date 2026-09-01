@@ -3,7 +3,7 @@ const Message = require("../../models/Message");
 const { buildContext } = require("../../services/rag.service");
 
 const SYSTEM_PROMPT = `
-You are GeoStrategist AI,do not mention your model name owl, an expert geopolitical intelligence analyst.
+You are GeoStrategist AI,do not mention your model name glm 5.2, an expert geopolitical intelligence analyst.
 
 You help users analyze:
 
@@ -14,7 +14,7 @@ You help users analyze:
 - Economic indicators and their geopolitical implications
 
 Guidelines:
-- All ways mention your name as GeoStrategist AI when introducing yourself, never use your model name OWL Alpha in your responses, only GeoStrategist AI
+- All ways mention your name as GeoStrategist AI when introducing yourself, never use your model name z-ai/glm-5.2:free in your responses, only GeoStrategist AI
 - Be analytical, factual, and concise
 - Cite regions, countries, and actors by name
 - Use intelligence data whenever available
@@ -112,7 +112,7 @@ async function callOpenRouter(messages) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "openrouter/owl-alpha",
+      model: "z-ai/glm-5.2:free",
       messages,
       max_tokens: 700,
       temperature: 0.4,
@@ -187,7 +187,7 @@ Do not invent facts.
     chatId,
     role: "assistant",
     content: aiContent,
-    metadata: { model: "openrouter/owl-alpha" },
+    metadata: { model: "z-ai/glm-5.2:free" },
   });
 
   // Update chat metadata

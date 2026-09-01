@@ -2,7 +2,7 @@ const Conflict = require("../models/Conflict");
 const { callOpenRouterChat, extractContent } = require("../utils/openrouter.service");
 const { parseJsonObject } = require("../utils/aiJson");
 
-const MODEL = "openai/gpt-oss-20b:free";
+const MODEL = "z-ai/glm-5.2:free";
 
 function normalizeConflictName(name) {
   return String(name || "")
