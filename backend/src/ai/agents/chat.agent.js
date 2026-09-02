@@ -105,27 +105,48 @@ function classifyMessage(message) {
 // ─── AI Call ─────────────────────────────────────────────────────────────────
 
 async function callOpenRouter(messages) {
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "z-ai/glm-5.2:free",
-      messages,
-      max_tokens: 700,
-      temperature: 0.4,
-    }),
-  });
+  console.log("OPENROUTER KEY EXISTS:", !!process.env.OPENROUTER_API_KEY);
+  console.log("Calling OpenRouter...");
+
+  const response = await fetch(
+    "https://openrouter.ai/api/v1/chat/completions",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "z-ai/glm-5.2:free",
+        messages,
+        max_tokens: 700,
+        temperature: 0.4,
+      }),
+    }
+  );
+
+  console.log("OpenRouter status:", response.status);
 
   if (!response.ok) {
     const err = await response.text();
-    throw new Error(`OpenRouter error ${response.status}: ${err}`);
+    console.error("OPENROUTER ERROR:", err);
+
+    throw new Error(
+      `OpenRouter error ${response.status}: ${err}`
+    );
   }
 
   const data = await response.json();
-  return data?.choices?.[0]?.message?.content || "Unable to generate a response.";
+
+  console.log(
+    "OpenRouter response received:",
+    !!data?.choices?.[0]?.message?.content
+  );
+
+  return (
+    data?.choices?.[0]?.message?.content ||
+    "Unable to generate a response."
+  );
 }
 
 // ─── Main export ─────────────────────────────────────────────────────────────
@@ -151,7 +172,13 @@ async function sendMessage(chatId, userId, userContent) {
       .limit(10)
       .lean();
 
-    const intelligenceContext = await buildContext();
+      console.log("Building intelligence context...");
+
+      const intelligenceContext = await buildContext();
+      
+      console.log(
+        "Intelligence context built successfully"
+      );
 
     const contextMessages = [
       {
