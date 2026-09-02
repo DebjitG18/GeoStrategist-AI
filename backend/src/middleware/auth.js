@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
 
   console.log("AUTH HEADER:");
-  console.log(req.headers.authorization);
 
   const authHeader =
     req.headers.authorization;
