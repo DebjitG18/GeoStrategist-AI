@@ -97,8 +97,6 @@ function isBlocked(message) {
 function classifyMessage(message) {
   if (isBlocked(message)) return "blocked";
   if (isGeopolitical(message)) return "allowed";
-  // Short/vague messages (greetings, etc.) — let AI handle them
-  if (message.trim().split(/\s+/).length <= 6) return "allowed";
   return "offtopic";
 }
 
