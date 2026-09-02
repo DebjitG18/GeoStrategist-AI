@@ -32,7 +32,6 @@ export default function ChatInput() {
     const content = forcedContent ? forcedContent.trim() : input.trim();
     if (!content || isSending) return;
 
-    if (!forcedContent) setInput("");
     setSending(true);
     setError(null);
 
@@ -51,8 +50,11 @@ export default function ChatInput() {
 
       const res = await sendMessage(chatId, content);
       addMessage(res.data.data.message);
+      if (!forcedContent) setInput("");
     } catch (err) {
       console.error("Send failed:", err);
+      console.error("Response:", err.response?.data);
+      console.error("Status:", err.response?.status);
       addMessage({
         _id: Date.now() + 1,
         role: "error",
